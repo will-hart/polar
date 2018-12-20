@@ -21,7 +21,9 @@ pandemic resource install recipe --as polar https://github.com/will-hart/polar.g
 
 ## Usage
 
-Supply `polar` as the recipe either in the YAML front matter:
+If you use the [`polar-scaffold`](https://github.com/will-hart/polar-scaffold) then the recipe is already set by default in YAML frontmatter.
+
+Otherwise, supply `polar` as the recipe either in the YAML front matter:
 
 ```yaml
 pandemic:
