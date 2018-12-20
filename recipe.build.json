@@ -1,6 +1,6 @@
 {
-  "template": "./polar.tex",
-  "options": ["--natbib", "--standalone"],
+  "template": "./polar_build.tex",
+  "options": ["--natbib"],
   "filters": [
     "pandoc-fignos",
     "pandoc-eqnos",

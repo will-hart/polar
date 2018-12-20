@@ -1,6 +1,6 @@
 {
-  "options": ["--xetex", "--standalone"],
-  "template": "./standalone.tex",
+  "template": "./polar.tex",
+  "options": ["--pdf-engine=xelatex", "--standalone"],
   "filters": [
     "pandoc-fignos",
     "pandoc-eqnos",
