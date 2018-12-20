@@ -1,0 +1,13 @@
+{
+  "options": ["--xetex", "--standalone"],
+  "template": "./standalone.tex",
+  "filters": [
+    "pandoc-fignos",
+    "pandoc-eqnos",
+    "pandoc-tablenos"
+  ],
+  "prehooks": [
+    "pandemic-it-figures",
+    "pandemic-mustache"
+  ]
+}

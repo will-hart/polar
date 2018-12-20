@@ -1,0 +1,13 @@
+{
+  "options": ["--xetex"],
+  "template": "./plain_xelatex.tex",
+  "filters": [
+    "pandoc-fignos",
+    "pandoc-eqnos",
+    "pandoc-tablenos"
+  ],
+  "prehooks": [
+    "pandemic-it-figures",
+    "pandemic-mustache"
+  ]
+}
