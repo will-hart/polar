@@ -1,10 +1,10 @@
 {
-  "options": ["--xetex", "--standalone"],
-  "template": "./standalone.tex",
+  "template": "./polar.tex",
+  "options": ["--standalone", "-N", "--pdf-engine=xelatex"],
   "filters": [
-    "pandoc-fignos",
-    "pandoc-eqnos",
-    "pandoc-tablenos"
+    "pantable",
+    "pandoc-crossref",
+    "pandoc-citeproc"
   ],
   "prehooks": [
     "pandemic-it-figures",

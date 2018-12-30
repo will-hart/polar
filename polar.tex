@@ -1,0 +1,188 @@
+% !TEX TS-program = XeLaTeX+MakeIndex+BibTex
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt]{scrartcl}
+
+%%%% SOURCE https://gist.github.com/michaelt/1017790
+%%% Comments removed
+
+\usepackage{fontspec,xltxtra,xunicode}
+\usepackage{amsmath}
+\usepackage[english]{babel}
+\usepackage{ulem}
+
+\RequirePackage[					% use biblatex for bibliography
+	backend=biber,					% 	- use biber back end (bibtex replacement) or bibtex
+	bibencoding=utf8,				% 	- use auto file encode
+	style=apa,						% 	- set the bib style
+	natbib=true,					% 	- allow natbib commands
+	sorting=nyt,					%  - sort by name, year and title
+	hyperref=true,					% 	- activate hyperref support
+	backref=true,					% 	- activate backrefs
+	isbn=false,						% 	- don't show isbn tags
+	url=false,						% 	- don't show url tags
+	doi=true,						% 	- show doi tags
+	urldate=long,					% 	- display type for dates
+	maxnames=2,						%
+	minnames=1,						%
+	maxbibnames=30,				%
+	minbibnames=3,					%
+	maxcitenames=2,				%
+	mincitenames=1					%
+]{biblatex}
+\DeclareLanguageMapping{english}{english-apa}
+
+% Margins, etc:
+\usepackage{geometry}
+\geometry{verbose,letterpaper,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
+\usepackage{longtable, booktabs}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Heading styles:
+% These commands keep the koma system from making stupid sans serif section headings
+\setkomafont{title}{\rmfamily\mdseries\upshape\normalsize}
+\setkomafont{sectioning}{\rmfamily\mdseries\upshape\normalsize}
+\setkomafont{descriptionlabel}{\rmfamily\mdseries\upshape\normalsize}
+
+
+% I'm puzzled why I have this foonote speciality,
+\usepackage[flushmargin]{footmisc}
+
+% Everything that follows is copied from the pandoc default template:
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+% Page format:
+\pagestyle{plain}
+
+% Footnotes
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+
+% Lists formatting:
+$if(fancy-enums)$
+
+\makeatletter\AtBeginDocument{%
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+\usepackage{enumerate}
+$endif$
+
+
+% Table formatting:
+$if(tables)$
+\usepackage{array}
+
+% -- This is needed because raggedright in table elements redefines \\:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\let\PBS=\PreserveBackslash
+
+$endif$
+
+
+% Subscripts:
+$if(subscript)$
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+$endif$
+
+% Web-style links:
+\usepackage[breaklinks=true]{hyperref}
+\hypersetup{colorlinks,%
+citecolor=blue,%
+filecolor=blue,%
+linkcolor=blue,%
+urlcolor=blue}
+$if(url)$
+\usepackage{url}
+$endif$
+
+\usepackage[version=4]{mhchem}		% chemical formulae
+\usepackage[separate-uncertainty=true, mode=text, bracket-numbers=false, multi-part-units=single]{siunitx}				% units
+
+\DeclareSIUnit\myMol{\textsc{m}}
+\DeclareSIUnit\osmol{osmol}
+\DeclareSIUnit\myOhm{\ensuremath{\Omega}}
+
+% Images.
+$if(graphics)$
+\usepackage{graphicx}
+% -- We will generate all images so they have a width \maxwidth. This means
+% -- that they will get their normal width if they fit onto the page, but
+% -- are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+$endif$
+
+
+% Section numbering.
+$if(numbersections)$
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+% Footnotes:
+$if(verbatim-in-note)$
+\VerbatimFootnotes % -- allows verbatim text in footnotes
+$endif$
+
+% Other stuff you specify on the command line:
+% You can include stuff for the header from a file specified on the command line;
+% I've never done this, but that stuff will go here:
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+% Title, authors, date.
+$if(title)$
+\title{$title$}
+$endif$
+\author{$for(author)$$author$$sep$\\$endfor$}
+$if(date)$
+\date{$date$}
+$endif$
+
+% At last:
+% The document itself!:
+
+\begin{document}
+
+
+$if(title)$
+% conditionally write title - required for merging documents in a parent latex file
+% https://tex.stackexchange.com/questions/466751/how-do-i-only-call-maketitle-if-title-has-been-called
+\makeatletter
+\def\checkfor@title{\@latex@error{No \noexpand\title given}\@ehc}
+
+\ifx\checkfor@title\@title
+% do nothing
+\else
+\maketitle
+\fi
+$endif$
+
+$if(toc)$
+\tableofcontents
+
+$endif$
+
+
+$if(alignment)$
+\begin{$alignment$}
+$endif$
+
+$body$
+
+%$if(alignment)$
+\end{$alignment$}
+$endif$
+
+
+\end{document}

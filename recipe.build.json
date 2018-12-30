@@ -1,0 +1,11 @@
+{
+  "template": "./polar.build.md",
+  "options": ["-t markdown"],
+  "filters": [
+    "pantable"
+  ],
+  "prehooks": [
+    "pandemic-it-figures",
+    "pandemic-mustache"
+  ]
+}

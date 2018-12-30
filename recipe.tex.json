@@ -1,10 +1,9 @@
 {
-  "options": ["--xetex"],
-  "template": "./plain_xelatex.tex",
+  "template": "./polar.tex",
+  "options": ["--natbib", "--standalone", "-N"],
   "filters": [
-    "pandoc-fignos",
-    "pandoc-eqnos",
-    "pandoc-tablenos"
+    "pantable",
+    "pandoc-crossref"
   ],
   "prehooks": [
     "pandemic-it-figures",
