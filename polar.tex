@@ -1,3 +1,4 @@
+% !TEX TS-program = XeLaTeX+MakeIndex+BibTex
 % !TEX encoding = UTF-8 Unicode
 
 \documentclass[12pt]{scrartcl}
@@ -8,6 +9,7 @@
 \usepackage{fontspec,xltxtra,xunicode}
 \usepackage{amsmath}
 \usepackage[english]{babel}
+\usepackage{ulem}
 
 \RequirePackage[					% use biblatex for bibliography
 	backend=biber,					% 	- use biber back end (bibtex replacement) or bibtex
@@ -97,6 +99,13 @@ urlcolor=blue}
 $if(url)$
 \usepackage{url}
 $endif$
+
+\usepackage[version=4]{mhchem}		% chemical formulae
+\usepackage[separate-uncertainty=true, mode=text, bracket-numbers=false, multi-part-units=single]{siunitx}				% units
+
+\DeclareSIUnit\myMol{\textsc{m}}
+\DeclareSIUnit\osmol{osmol}
+\DeclareSIUnit\myOhm{\ensuremath{\Omega}}
 
 % Images.
 $if(graphics)$
